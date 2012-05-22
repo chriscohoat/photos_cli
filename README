@@ -1,1 +1,14 @@
-Readme!
+To install:
+	python setup.py install
+	
+To use:
+	Create a new album:
+		photos -c new_album_title
+	Add files to album:
+		photos -a new_album_title photo1 photo2 photo3
+	List the album:
+		photos -l new_album_title
+	Delete photos (by ID) from album:
+		photos -d new_album 1 2 3
+	
+	

@@ -66,13 +66,13 @@ def main():
     p = optparse.OptionParser()
     
     p.add_option('--create_album','-c',metavar="ALBUM_TITLE",help='Create an album with title ALBUM_TITLE')
-    p.add_option('--add_to_album','-a',metavar="ALBUM_TITLE",help="""Add file(s) to album with title ALBUM_TITLE
-    
-    photos.py -a album1 /path/to/photo1 /path/to/photo2 """)
+    p.add_option('--add_to_album','-a',metavar="ALBUM_TITLE",help="""Add file(s) to album with title ALBUM_TITLE 
+       
+    e.g.: photos -a album1 /path/to/photo1 /path/to/photo2 """)
     p.add_option('--list_album','-l',metavar="ALBUM_TITLE",help='List all photos in ALBUM_TITLE')
-    p.add_option('--delete_from_album','-d',metavar="ALBUM_TITLE",help="""Delete given photo(s) from ALBUM_TITLE
-    
-    photos.py -d album1 ID1 ID2 ID3""")
+    p.add_option('--delete_from_album','-d',metavar="ALBUM_TITLE",help="""Delete given photo(s) from ALBUM_TITLE 
+       
+    e.g.: photos -d album1 ID1 ID2 ID3""")
     
     (options, arguments) = p.parse_args()
     

@@ -27,14 +27,17 @@ setup(
     install_requires=['pycurl','requests'],
 )
 
-bindir = '/usr/local/bin'
-
-file_to_copy = 'photos' 
-
-path_to_cli = os.path.join(os.path.dirname(os.path.abspath(__file__)),'photos_cli/%s' % file_to_copy)
-command = "cp %s %s" % (path_to_cli,bindir)
-os.system(command)
-
-#Make file executable
-new_path = os.path.join(bindir,file_to_copy)
-os.system('chmod +x %s' % new_path)
+try:
+    bindir = '/usr/local/bin'
+    
+    file_to_copy = 'photos' 
+    
+    path_to_cli = os.path.join(os.path.dirname(os.path.abspath(__file__)),'photos_cli/%s' % file_to_copy)
+    command = "cp %s %s" % (path_to_cli,bindir)
+    os.system(command)
+    
+    #Make file executable
+    new_path = os.path.join(bindir,file_to_copy)
+    os.system('chmod +x %s' % new_path)
+except:
+    print "Unable to copy photos to /usr/local/bin. Could be because I only developed this for *nix in my haste."

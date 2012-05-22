@@ -44,10 +44,17 @@ def list_album(album_title):
             print '%s\t%s' % (photo['id'],absolute_url)
     
 def delete_from_album(album_title,arguments):
-    for filename in arguments:
-        print 'Deleting %s from %s' % (filename,album_title)
-        if not os.path.isfile(filename):
-            print '\tFile does not exist!'
+    for id in arguments:
+        print 'Deleting %s from %s' % (id,album_title)
+        r = requests.post("%s/api/album/remove/" % BASE_URL,data={'album_title':album_title,'id':id})
+        json_response = json.loads(r.text)
+        if json_response.has_key('error'):
+            print '\t%s' % json_response['error']
+        else:
+            if json_response['success']:
+                print '\tSuccessfully deleted photo from album!'
+            else:
+                print '\tSomething went wrong.'
 
 def main():
     

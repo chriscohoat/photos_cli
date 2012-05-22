@@ -10,5 +10,14 @@ To use:
 		photos -l new_album_title
 	Delete photos (by ID) from album:
 		photos -d new_album 1 2 3
+
+Notes:
+	The Python script "photos" gets copied to /usr/local/bin during the install. Sorry if not.
+	
+	Photos aren't actually uploaded (yet), just the filenames. Will come soon.
+	
+	The backend can be found here: http://photo-storage.herokuapp.com/admin
+	
+	
 	
 	

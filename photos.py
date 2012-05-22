@@ -19,14 +19,29 @@ def create_album(album_title):
             print "Album with this title (%s) already exists!" % album_title
     
 def add_to_album(album_title,arguments):
+    #First make sure this album exists (if not create)
+    requests.post("%s/api/album/create/" % BASE_URL,data={'album_title':album_title})
     for filename in arguments:
         print 'Adding %s to %s' % (filename,album_title)
         if not os.path.isfile(filename):
             print '\tFile does not exist!'
+        else:
+            r = requests.post("%s/api/album/add/" % BASE_URL,data={'album_title':album_title,'filename':filename})
+            json_response = json.loads(r.text)
+            if json_response.has_key('error'):
+                print '\t%s' % json_response['error']
+            else:
+                print "\tSuccessfully added this photo!"
     
 def list_album(album_title):
     r = requests.get("%s/api/album/list/?album_title=%s" % (BASE_URL,album_title))
-    print r.text
+    json_response = json.loads(r.text)
+    if json_response.has_key('error'):
+        print json_response['error']
+    else:
+        for photo in json_response['album']['photos']:
+            absolute_url = '%s%s' % (BASE_URL,photo['relative_path'])
+            print '%s\t%s' % (photo['id'],absolute_url)
     
 def delete_from_album(album_title,arguments):
     for filename in arguments:

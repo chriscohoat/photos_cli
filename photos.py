@@ -21,9 +21,10 @@ def create_album(album_title):
 def add_to_album(album_title,arguments):
     #First make sure this album exists (if not create)
     requests.post("%s/api/album/create/" % BASE_URL,data={'album_title':album_title})
-    for filename in arguments:
+    for path_to_file in arguments:
+        filename = path_to_file.split('/')[-1]
         print 'Adding %s to %s' % (filename,album_title)
-        if not os.path.isfile(filename):
+        if not os.path.isfile(path_to_file):
             print '\tFile does not exist!'
         else:
             r = requests.post("%s/api/album/add/" % BASE_URL,data={'album_title':album_title,'filename':filename})

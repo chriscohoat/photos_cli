@@ -2,3 +2,6 @@
 /*.pydevproject
 /*.jpg
 /*.52.18 PM.png
+/build/
+/dist/
+/photo_storage_cli.egg-info/

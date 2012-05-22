@@ -31,7 +31,8 @@ def add_to_album(album_title,arguments):
         if not os.path.isfile(path_to_file):
             print '\tFile does not exist!'
         else:
-            r = requests.post("%s/api/album/add/" % BASE_URL,data={'album_title':album_title,'filename':filename})
+            files = {'photo':open(path_to_file,'rb')}
+            r = requests.post("%s/api/album/add/" % BASE_URL,data={'album_title':album_title,'filename':filename},files=files)
             json_response = json.loads(r.text)
             if json_response.has_key('error'):
                 print '\t%s' % json_response['error']

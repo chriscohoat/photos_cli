@@ -24,7 +24,7 @@ setup(
         "Topic :: Utilities",
         "License :: OSI Approved :: BSD License",
     ],
-    install_requires=['pycurl','requests'],
+    install_requires=['requests'],
 )
 
 try:

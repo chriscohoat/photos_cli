@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import optparse,pycurl
+import optparse
 import os
 import requests
 import json

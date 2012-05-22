@@ -2,13 +2,21 @@
 import optparse,pycurl
 import os
 import requests
+import json
 
 BASE_URL = 'http://localhost:9876'
 
 def create_album(album_title):
     payload = {'album_title':album_title}
     r = requests.post("%s/api/album/create/" % BASE_URL,data=payload)
-    print r.text
+    json_response = json.loads(r.text)
+    if json_response.has_key('error'):
+        print json_response['error']
+    else:
+        if json_response['created']:
+            print "Created new album with title: %s" % album_title
+        else:
+            print "Album with this title (%s) already exists!" % album_title
     
 def add_to_album(album_title,arguments):
     for filename in arguments:
